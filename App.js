@@ -14,12 +14,18 @@ export default function App() {
     // こっちがベターらしい
 　 setCourseGoals(currentGoals => [...currentGoals, {id: Math.random().toString(), value: goalTitle}])
   }
+
+  const removeGoalHanlder = goalId => {
+    setCourseGoals(currentGoals => {
+      return currentGoals.filter((goal) => goal.id !== goalId)
+    })
+  }
   return (
     <View style={styles.screen}>
       <GoalInput onAddGoal={addGoalHander}/>
       <FlatList data={courseGoals} renderItem={itemDate =>(
         <View >
-          <GoalItem title={itemDate.item.value} onDelete={() => alert("click")}/>
+          <GoalItem id={itemDate.item.id} title={itemDate.item.value} onDelete={removeGoalHanlder}/>
         </View>
       )}>
       </FlatList>

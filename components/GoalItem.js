@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TextInput, Button,TouchableOpacity } from 'reac
 
 const GoalItem = props => {
   return(
-    <TouchableOpacity  onPress={props.onDelete}>
+    <TouchableOpacity  onPress={props.onDelete.bind(this, props.id)}>
       <View style={styles.listItem} >
         <Text>{props.title}</Text>
       </View>
