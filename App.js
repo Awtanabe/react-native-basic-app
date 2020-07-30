@@ -2,32 +2,21 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList } from 'react-native';
 import GoalItem from './components/GoalItem';
+import GoalInput from './components/GoalInput';
 
 export default function App() {
-  const [entredGoal, setEntredGoal] = useState('')
   const [courseGoals, setCourseGoals] = useState([])
 
-  const goalInputHandler = (enterdText) => {
-    setEntredGoal(enterdText)
-  }
 
-  const addGoalHander = () => {
+  const addGoalHander = goalTitle => {
     // 基本的な配列に文字を追加
     // setCourseGoals([...courseGoals, entredGoal])
     // こっちがベターらしい
-　 setCourseGoals(currentGoals => [...currentGoals, {id: Math.random().toString(), value: entredGoal}])
+　 setCourseGoals(currentGoals => [...currentGoals, {id: Math.random().toString(), value: goalTitle}])
   }
   return (
     <View style={styles.screen}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder="Course Goal"
-          style={styles.inputs}
-          onChangeText={goalInputHandler}
-          value={entredGoal}
-        />
-        <Button title="ADD" onPress={addGoalHander}/>
-      </View>
+      <GoalInput onAddGoal={addGoalHander}/>
       <FlatList data={courseGoals} renderItem={itemDate =>(
         <View >
           <GoalItem title={itemDate.item.value}/>
