@@ -21,10 +21,15 @@ export default function App() {
       return currentGoals.filter((goal) => goal.id !== goalId)
     })
   }
+
+  const handleModal = () => {
+    setIsAddMode(true)
+  }
+
   return (
-    <View style={styles.screen} onPress={() => setIsAddMode(true)}>
-      <Button visible={isAddMode} title="add goal"/>
-      <GoalInput onAddGoal={addGoalHander}/>
+    <View style={styles.screen} >
+      <Button title="add goal" onPress={handleModal}/>
+      <GoalInput visible={isAddMode} onAddGoal={addGoalHander}/>
       <FlatList data={courseGoals} renderItem={itemDate =>(
         <View >
           <GoalItem id={itemDate.item.id} title={itemDate.item.value} onDelete={removeGoalHanlder}/>

@@ -15,11 +15,11 @@ const GoalInput = props => {
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Course Goal"
-          style={styles.inputs}
+          style={styles.input}
           onChangeText={goalInputHandler}
           value={entredGoal}
         />
-      <Button title="ADD" onPress={props.onAddGoal.bind(this, entredGoal)}/>
+      <Button title="ADDDDD" onPress={props.onAddGoal.bind(this, entredGoal)}/>
       </View>
     </Modal>
   )
@@ -27,8 +27,9 @@ const GoalInput = props => {
 
 const styles = StyleSheet.create({
   inputContainer: {
+    flex:1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center'
   },input: {
     width: '80%',
