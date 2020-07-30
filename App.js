@@ -14,7 +14,8 @@ export default function App() {
     // setCourseGoals([...courseGoals, entredGoal])
     // こっちがベターらしい
 　 setCourseGoals(currentGoals => [...currentGoals, {id: Math.random().toString(), value: goalTitle}])
-  }
+   setIsAddMode(false)  
+}
 
   const removeGoalHanlder = goalId => {
     setCourseGoals(currentGoals => {
@@ -26,10 +27,14 @@ export default function App() {
     setIsAddMode(true)
   }
 
+  const cancalGoalAdditionHandler = () =>{
+    setIsAddMode(false) 
+  }
+
   return (
     <View style={styles.screen} >
       <Button title="add goal" onPress={handleModal}/>
-      <GoalInput visible={isAddMode} onAddGoal={addGoalHander}/>
+      <GoalInput visible={isAddMode} onAddGoal={addGoalHander} onCancel={cancalGoalAdditionHandler}/>
       <FlatList data={courseGoals} renderItem={itemDate =>(
         <View >
           <GoalItem id={itemDate.item.id} title={itemDate.item.value} onDelete={removeGoalHanlder}/>
